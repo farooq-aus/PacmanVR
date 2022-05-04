@@ -9,6 +9,7 @@ public class coinCollect : MonoBehaviour
     public int maxCount = 32;
     public int currentCount;
     public CoinBar coinBar;
+
     void Start()
     {
         currentCount = 0;
@@ -27,7 +28,10 @@ public class coinCollect : MonoBehaviour
                 Debug.Log(hitCollider.name);
                 currentCount += 1;
                 coinBar.SetCount(currentCount);
-                // make coin disappear after this
+                AudioSource chingSound = hitCollider.gameObject.GetComponent<AudioSource>();
+                chingSound.Play();
+                Debug.Log(chingSound.isPlaying);
+                Destroy(hitCollider.gameObject);
             }
         }
     }
